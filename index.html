@@ -1,0 +1,83 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no, viewport-fit=cover" />
+  <meta name="theme-color" content="#1c1410" />
+  <meta name="apple-mobile-web-app-capable" content="yes" />
+  <meta name="mobile-web-app-capable" content="yes" />
+  <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent" />
+  <meta name="apple-mobile-web-app-title" content="方仔摸鱼" />
+  <meta name="format-detection" content="telephone=no" />
+  <meta name="description" content="按住摸鱼，躲开老板。一款像素风休闲小游戏。" />
+  <link rel="icon" type="image/png" href="assets/icon.png" />
+  <link rel="apple-touch-icon" href="assets/apple-touch-icon.png" />
+  <title>方仔摸鱼</title>
+  <link rel="stylesheet" href="css/style.css" />
+</head>
+<body>
+  <div id="app">
+    <div id="rotate" aria-hidden="true">请把手机竖过来再摸鱼哦</div>
+    <div id="stage">
+      <canvas id="scene" width="720" height="1280" aria-hidden="true"></canvas>
+
+      <div id="hud" hidden>
+        <div class="hud-col">
+          <div class="hud-label">分数</div>
+          <div id="score">0</div>
+        </div>
+        <div class="hud-col hud-center">
+          <div id="clock-label">09:00</div>
+          <div id="combo"></div>
+        </div>
+        <div class="hud-col hud-right">
+          <div class="hud-label">最高</div>
+          <div id="high">0</div>
+        </div>
+      </div>
+
+      <div id="banner" hidden></div>
+      <button id="mute" type="button" aria-label="关闭声音" aria-pressed="false">♪</button>
+      <div id="hint" hidden>按住屏幕摸鱼 · 松开认真干活</div>
+
+      <section id="screen-boot" class="screen">
+        <p class="loading">加载中…</p>
+      </section>
+
+      <section id="screen-title" class="screen" hidden>
+        <h1 class="logo">方仔摸鱼</h1>
+        <div class="shade shade-bottom"></div>
+        <div class="card card-sm">
+          <p class="tagline">按住摸鱼，别被老板抓到</p>
+          <p class="howto">按住赚分 · 松开干活 · 躲开老板回头</p>
+          <p class="best">最高分 <strong id="title-high">0</strong></p>
+          <button type="button" id="btn-start" class="btn primary">开始摸鱼</button>
+        </div>
+      </section>
+
+      <section id="screen-over" class="screen" hidden>
+        <div class="shade shade-bottom"></div>
+        <div class="card card-sm">
+          <h2 id="over-title">被老板抓到了！</h2>
+          <p id="over-badge" class="badge" hidden>新纪录</p>
+          <p class="over-score">本次 <strong id="over-score">0</strong> 分</p>
+          <p class="over-meta" id="over-meta"></p>
+          <div class="btn-row">
+            <button type="button" id="btn-retry" class="btn primary">再摸一次</button>
+            <button type="button" id="btn-share" class="btn ghost">分享战绩</button>
+          </div>
+        </div>
+      </section>
+
+      <footer class="footer">
+        <span>作者 hukx</span>
+        <span class="sep">·</span>
+        <a href="https://afdian.com/a/hukxai" target="_blank" rel="noopener noreferrer">请方仔喝奶茶</a>
+      </footer>
+
+      <div id="toast" hidden></div>
+    </div>
+  </div>
+  <script src="js/game.js"></script>
+</body>
+</html>
