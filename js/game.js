@@ -19,8 +19,6 @@ const ASSETS = {
   leave: 'assets/fangzai-leave.png',
 };
 
-const SHOT = new URLSearchParams(location.search).get('shot');
-
 const $ = (id) => document.getElementById(id);
 const el = {
   stage: $('stage'),
@@ -934,79 +932,6 @@ function preload() {
   })));
 }
 
-function applyShot() {
-  if (!SHOT) return;
-  if (SHOT === 'title') {
-    showScreen('title');
-    setPose('idle');
-    resetBoss(true);
-    return;
-  }
-  resetRun();
-  if (SHOT === 'play') {
-    showScreen('play');
-    G.elapsed = 28000;
-    G.score = 486;
-    G.displayScore = 486;
-    G.holding = true;
-    G.holdMs = 2600;
-    G.comboTier = 3;
-    G.maxCombo = 3;
-    setPose('slack');
-    el.score.textContent = '486';
-    el.combo.textContent = '连击 ×3';
-    el.clock.textContent = workClock(G.elapsed);
-    G.boss.pattern = 'turn';
-    G.boss.phase = 'away';
-    G.boss.x = 88;
-    G.boss.turn = 0;
-    G.boss.dur = 99999;
-    G.boss.timer = 0;
-    return;
-  }
-  if (SHOT === 'warn') {
-    showScreen('play');
-    G.elapsed = 40000;
-    G.score = 820;
-    G.displayScore = 820;
-    G.holding = true;
-    G.holdMs = 1800;
-    G.comboTier = 2;
-    setPose('slack');
-    el.score.textContent = '820';
-    el.combo.textContent = '连击 ×2';
-    el.clock.textContent = workClock(G.elapsed);
-    G.boss.pattern = 'turn';
-    G.boss.phase = 'warning';
-    G.boss.x = 88;
-    G.boss.turn = 0.45;
-    G.boss.dur = 99999;
-    G.boss.timer = 200;
-    showBanner('有人来了！', 'warn', 99999);
-    return;
-  }
-  if (SHOT === 'over') {
-    G.elapsed = 42000;
-    G.score = 966;
-    G.maxCombo = 4;
-    G.survived = 7;
-    G.boss.phase = 'looking';
-    G.boss.turn = 1;
-    G.boss.x = 88;
-    setPose('over');
-    finish('caught');
-    return;
-  }
-  if (SHOT === 'win') {
-    G.elapsed = DAY_MS;
-    G.score = 1580;
-    G.maxCombo = 5;
-    G.survived = 14;
-    setPose('leave');
-    finish('win');
-  }
-}
-
 async function boot() {
   setMuted(sfx.muted);
   el.high.textContent = String(highScore);
@@ -1016,7 +941,6 @@ async function boot() {
   resetBoss(true);
   setPose('idle');
   showScreen('title');
-  applyShot();
   requestAnimationFrame(frame);
 }
 
